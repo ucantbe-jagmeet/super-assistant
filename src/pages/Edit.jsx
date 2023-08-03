@@ -2,6 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import Category from "../questions/Category";
+import Comprehension from "../questions/Comprehension";
 import FillBlanks from "../questions/FillBlanks";
 
 const Edit = () => {
@@ -14,6 +15,7 @@ const Edit = () => {
         <div className="h-auto p-10 ">
           <Category />
           <FillBlanks />
+          <Comprehension />
         </div>
       </div>
     </>
