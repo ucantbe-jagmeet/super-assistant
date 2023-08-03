@@ -29,7 +29,7 @@ const Category = () => {
   };
 
   return (
-    <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grya-400 ">
+    <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grya-400  ">
       <h1 className="text-2xl font-semibold text-gray-600">Question 1</h1>
 
       <h2 className="text-gray-500 mt-5"> Categories</h2>
@@ -56,20 +56,20 @@ const Category = () => {
           placeholder="Enter category ..."
           required
         />
-        <button className="h-10 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-1 font-semibold text-white">
+        <button className="h-9 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white">
           + Create More
         </button>
       </div>
 
       {/* items and belong table  */}
-      <div className="h-40 bg-blue-50 mt-3 grid grid-cols-2 px-10">
+      <div className=" bg-blue-50 mt-3 grid grid-cols-2 px-10 py-2">
         <div>
           <h2>Item</h2>
           {ansList.map((item, index) => {
             return (
               <h2
                 key={index}
-                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 cursor-move"
+                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 "
               >
                 {item}
               </h2>
@@ -80,12 +80,22 @@ const Category = () => {
           <h2>Belongs to</h2>
           {itemsList.map((item, index) => {
             return (
-              <h2
+              <select
                 key={index}
-                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 cursor-move"
+                name="itemSelect"
+                value="value"
+                id="itemSelect"
+                onChange={() => console.log("handlechange occured")}
+                className="h-9 w-52  flex items-center pl-5 rounded-sm my-1 outline-none "
               >
-                {item}
-              </h2>
+                {itemsList.map((itemValue, index) => {
+                  return (
+                    <option key={index} value={itemValue}>
+                      {itemValue}
+                    </option>
+                  );
+                })}
+              </select>
             );
           })}
         </div>

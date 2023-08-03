@@ -4,7 +4,7 @@ import Category from "../questions/Category";
 const Edit = () => {
   return (
     <>
-      <div className="h-full w-full  bg-red-50">
+      <div className="h-full w-full bg-red-50 overflow-auto">
         <div>
           <Navbar text="edit form" />
         </div>
