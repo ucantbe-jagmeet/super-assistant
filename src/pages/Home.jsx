@@ -1,17 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Aside from "../components/Aside";
-import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
-    <main className="h-screen w-screen bg-red-50 grid grid-cols-7">
-      <div>
+    <main className="h-screen w-screen flex">
+      <div className="w-1/6">
         <Aside />
       </div>
-      <div className="">
-        <Navbar />
+      <di className="w-5/6">
         <Outlet />
-      </div>
+      </di>
     </main>
   );
 };
