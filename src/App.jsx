@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Home, Landing, Edit, Preview } from "../pages/index";
+import { Home, Landing, Edit, Preview, ErrorPage } from "./pages/index";
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="/edit" element={<Edit />} />
           <Route path="/preview" element={<Preview />} />
-          <Route path="*" />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
