@@ -1,6 +1,6 @@
+import { Outlet } from "react-router-dom";
 import Aside from "../components/Aside";
 import Navbar from "../components/Navbar";
-import Hero from "./Hero";
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       </div>
       <div className="">
         <Navbar />
-        <Hero />
+        <Outlet />
       </div>
     </main>
   );
