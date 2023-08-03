@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+    --primary-light-blue: #EAFCFF;
+    --primary-light-blue2: #036CFF;
+    --primary-dark-blue1: #1874D0;
+    --primary-dark-blue2: #008BDC;
+    --primary-light-blue3: #00A3E9;
+    --primary-light-blue4: #79d1f7;
+    --primary-light-blue5: #cfedf8;
+    --primary-light-blue6: #eafafe;
+    --primary-green: #25c007;
+    --primary-white: #FFFFFF;
+    --primary-black: #333333;
+    --primary-orange1: #e7b852;
+    --primary-orange2: #f7dca7d7;
+    --primary-green1: #2ccc0b;
+    --primary-green2: #a9d8a093;
+}
