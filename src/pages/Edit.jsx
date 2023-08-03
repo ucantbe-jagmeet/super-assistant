@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
+
 import Navbar from "../components/Navbar";
 import Category from "../questions/Category";
+import FillBlanks from "../questions/FillBlanks";
 
 const Edit = () => {
   return (
@@ -10,6 +13,7 @@ const Edit = () => {
         </div>
         <div className="h-auto p-10 ">
           <Category />
+          <FillBlanks />
         </div>
       </div>
     </>
