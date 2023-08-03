@@ -8,7 +8,7 @@ import FillBlanks from "../questions/FillBlanks";
 const Edit = () => {
   return (
     <>
-      <div className="h-full w-full bg-red-50 overflow-auto">
+      <div className="h-full w-full  overflow-auto">
         <div>
           <Navbar text="edit form" />
         </div>

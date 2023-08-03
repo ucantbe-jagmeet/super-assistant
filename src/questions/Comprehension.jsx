@@ -64,7 +64,7 @@ const Comprehension = () => {
       <div className="flex justify-center flex-col">
         <div className="flex flex-col">
           {questions.map((question, index) => (
-            <div key={index} className="bg-blue-50 rounded-md my-5 p-5">
+            <div key={index} className="bg-blue-50 rounded-md my-5 px-5 py-2">
               <h4>Question {index + 1}</h4>
               <input
                 type="text"
@@ -100,7 +100,6 @@ const Comprehension = () => {
                   Remove Question
                 </button>
               </div>
-              <hr />
             </div>
           ))}
           <button

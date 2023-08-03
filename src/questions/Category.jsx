@@ -62,7 +62,7 @@ const Category = () => {
       </div>
 
       {/* items and belong table  */}
-      <div className=" bg-blue-50 mt-3 grid grid-cols-2 px-10 py-2">
+      <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
         <div>
           <h2>Item</h2>
           {ansList.map((item, index) => {
