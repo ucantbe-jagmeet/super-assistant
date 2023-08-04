@@ -3,4 +3,6 @@ import ErrorPage from "./ErrorPage";
 import Home from "./Home";
 import Landing from "./Landing";
 import Preview from "./Preview";
-export { ErrorPage, Edit, Preview, Home, Landing };
+import Hero from "./Hero";
+
+export { Hero, ErrorPage, Edit, Preview, Home, Landing };

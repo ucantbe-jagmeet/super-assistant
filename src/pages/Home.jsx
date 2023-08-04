@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import Aside from "../components/Aside";
-
 const Home = () => {
   return (
     <main className="h-screen w-screen flex">

@@ -7,7 +7,9 @@ const Aside = () => {
   return (
     <div className="h-screen bg-blue-50">
       <div className="flex justify-center md:text-md lg:text-lg   h-16 items-center">
-        <Logo className="" />
+        <Link to="/hero">
+          <Logo className="" />
+        </Link>
       </div>
       <hr />
       <div className="h-1/3 w-full flex items-center flex-col justify-evenly ">

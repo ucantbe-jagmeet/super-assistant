@@ -40,7 +40,7 @@ const CategorySol = () => {
   };
 
   return (
-    <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grey-400">
+    <div className="w-full h-auto  rounded-md px-10 py-5 border-2 border-grey-400">
       <h1 className="text-2xl font-semibold text-gray-600">Question 1</h1>
 
       <h2 className="text-gray-500 mt-5"> Categories</h2>
@@ -63,7 +63,7 @@ const CategorySol = () => {
           return (
             <div
               key={index}
-              className=" bg-red-100 w-52 capitalize  rounded-md"
+              className=" bg-yellow-50 border-2 w-52 capitalize  rounded-md"
               style={{
                 height: `${itemsList.length * 2.25}rem`,
               }}

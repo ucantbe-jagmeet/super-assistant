@@ -7,7 +7,7 @@ const Landing = () => {
         <h1 className="text-4xl  uppercase font-semibold text-gray-400 md:text-4xl">
           Super Assistant Developers
         </h1>
-        <Link to="/">
+        <Link to="/hero">
           <button className="mt-5 px-5 py-1 bg-[--primary-light-blue4] rounded-md text-white capitalize font-serif tracking-widest">
             lets go...🚀
           </button>

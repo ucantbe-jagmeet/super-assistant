@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Home, Landing, Edit, Preview, ErrorPage } from "./pages/index";
+import { Home, Landing, Edit, Preview, ErrorPage, Hero } from "./pages/index";
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/landing" element={<Landing />} />
         <Route path="/" element={<Home />}>
+          <Route path="/hero" element={<Hero />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/preview" element={<Preview />} />
         </Route>

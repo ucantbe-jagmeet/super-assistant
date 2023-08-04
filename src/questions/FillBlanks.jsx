@@ -18,14 +18,19 @@ const FillBlanks = () => {
         const range = selection.getRangeAt(0);
 
         const span = document.createElement("span");
-        setSpanText(() => {
-          let newText = span.textContent;
-          return [...spanText, newText];
-        });
         span.style.textDecoration = "underline";
         span.style.marginLeft = "2px";
         span.style.marginRight = "2px";
         range.surroundContents(span);
+
+        const underlinedText = span.textContent;
+
+        // Add the underlined text with a checked property
+        setSpanText((prevTexts) => [
+          ...prevTexts,
+          { text: underlinedText, isChecked: true },
+        ]);
+
         selection.removeAllRanges();
       }
     };
@@ -36,11 +41,21 @@ const FillBlanks = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  // Handle checkbox change to update isChecked property
+  const handleCheckboxChange = (index, isChecked) => {
+    setSpanText((prevTexts) => {
+      const updatedTexts = [...prevTexts];
+      updatedTexts[index].isChecked = isChecked;
+      return updatedTexts;
+    });
+  };
+
   return (
     <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grey-400 mt-10 ">
       <h1 className="text-2xl font-semibold text-gray-600">Question 2</h1>
 
-      <h2 className="text-gray-500 mt-5"> Fill in the Blank</h2>
+      <h2 className="text-gray-500 mt-5">Fill in the Blank</h2>
 
       <div className="flex justify-center flex-col">
         <div className="h-20 w-96  flex items-center pl-5 rounded-md my-1   border-2 outline-none">
@@ -50,17 +65,18 @@ const FillBlanks = () => {
           return (
             <div className="flex items-center" key={index}>
               <input
-                checked
-                id="checked-checkbox"
+                checked={item.isChecked}
+                id={`checked-checkbox-${index}`}
                 type="checkbox"
                 value=""
                 className="scale-125"
+                onChange={(e) => handleCheckboxChange(index, e.target.checked)}
               />
               <label
-                htmlFor="checked-checkbox"
+                htmlFor={`checked-checkbox-${index}`}
                 className="ml-2  text-gray-900 h-9 w-52 bg-green-100 flex items-center pl-5 rounded-sm my-1 "
               >
-                {item}
+                {item.text}
               </label>
             </div>
           );

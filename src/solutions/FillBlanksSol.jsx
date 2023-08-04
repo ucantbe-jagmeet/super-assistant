@@ -45,7 +45,7 @@ const FillBlanksSol = () => {
 
       <h2 className="text-gray-500 mt-5"> Fill in the Blank</h2>
 
-      <div className="h-12 flex items-center bg-red-50 pl-5 mt-5">
+      <div className="h-12 flex items-center bg-yellow-50 pl-5 mt-5 border rounded-sm">
         <h1>{question}</h1>
       </div>
     </div>
