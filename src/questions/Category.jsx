@@ -75,6 +75,16 @@ const Category = () => {
               </h2>
             );
           })}
+          <input
+            type="text"
+            id="item"
+            className="h-9 w-52  flex items-center pl-4 rounded-md my-2  text-white border-2"
+            placeholder="Enter Item ..."
+            required
+          />
+          <button className="h-9 w-52 bg-green-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white">
+            + Create More
+          </button>
         </div>
         <div>
           <h2>Belongs to</h2>

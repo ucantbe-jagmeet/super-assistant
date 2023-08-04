@@ -24,7 +24,7 @@ const ComprehensionSol = () => {
                 <div key={optionIndex} className="flex">
                   <input
                     type="radio"
-                    name={`question${index}`} // Use a unique name for each group of radio buttons
+                    name={`question${index}`}
                     value={optionIndex}
                     className="scale-125"
                     checked={question.correctAnswer === optionIndex}
