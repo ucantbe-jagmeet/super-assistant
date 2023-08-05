@@ -6,9 +6,9 @@ const Home = () => {
       <div className="w-1/6">
         <Aside />
       </div>
-      <di className="w-5/6">
+      <div className="w-5/6">
         <Outlet />
-      </di>
+      </div>
     </main>
   );
 };
