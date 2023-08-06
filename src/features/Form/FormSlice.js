@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { categoryList, itemsList, questionsList } from "../../../data";
 
 const initialState = {
-  value: 0,
+  questionsList: questionsList,
+  categoryList: categoryList,
+  itemsList: itemsList,
 };
 
 const formSlice = createSlice({

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from "react";
-import questionsList from "../../questionsList";
+import { questionsList } from "../../data";
 
 const ComprehensionSol = () => {
   const [questions, setQuestions] = useState(questionsList);
