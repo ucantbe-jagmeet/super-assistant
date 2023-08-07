@@ -10,22 +10,20 @@ const Category = () => {
   const [itemsListArr, setItemsListArr] = useState(itemsList);
   const [categoryListArr, setCategoryListArr] = useState(categoryList);
   const [itemValue, setItemValue] = useState("");
+
   // save refernce for dragItem and dragOverItem
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
-
   // const handle drag sort
   const handleSort = () => {
     //duplicate items
     let newItemsList = [...itemsListArr];
-
     // remove and save the dragged item content
     const draggedItemContent = newItemsList.splice(dragItem.current, 1)[0];
-
     //switch the position
     newItemsList.splice(dragOverItem.current, 0, draggedItemContent);
 
-    //reset the position ref
+    // reset the position ref
     dragItem.current = null;
     dragOverItem.current = null;
 
@@ -33,27 +31,32 @@ const Category = () => {
     setItemsListArr(newItemsList);
   };
 
-  const submitItemValue = (e) => {
-    e.preventDefault();
-    setItemsListArr((itemListArr) => {
-      let newObj = { id: new Date().getTime(), item: e.target.value };
-      return [...itemListArr, newObj];
-    });
-    setItemValue(e.target.value);
+  const addItemValue = (itemName) => {
+    let idArr = itemsListArr.map((e) => e.id);
+    let maxElemId = Math.max(...idArr);
+    let newObj = { id: maxElemId + 1, item: itemName };
+    const newItems = [...itemsListArr, newObj];
+    console.log(newItems);
+    setItemsListArr(newItems);
   };
 
-  const handleItemInput = () => {};
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addItemValue(itemValue);
+    setItemValue("");
+  };
 
   const removeItem = (id) => {
     const updatedList = itemsListArr.filter((item) => item.id !== id);
     setItemsListArr(updatedList);
   };
+
   return (
     <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grey-400  ">
       <h1 className="text-2xl font-semibold text-gray-600">Question 1</h1>
 
       <h2 className="text-gray-500 mt-5"> Items</h2>
-      <div className="flex justify-center flex-col">
+      <form className="flex justify-center flex-col" onSubmit={onSubmit}>
         {itemsListArr.map((item) => {
           return (
             <div
@@ -67,7 +70,7 @@ const Category = () => {
               <h2 className="h-9 w-52 bg-red-100 flex items-center px-5 rounded-sm my-1 justify-between cursor-move">
                 {item.item}
                 <div
-                  className="text-md rounded-full bg-red-500 text-white font-semi cursor-pointer"
+                  className="text-md rounded-full bg-red-500 text-white cursor-pointer"
                   onClick={() => removeItem(item.id)}
                 >
                   <IoMdRemove />
@@ -81,29 +84,32 @@ const Category = () => {
           id="item"
           name="item"
           value={itemValue}
-          onChange={(e) => handleItemInput(e)}
-          className="h-9 w-52  flex items-center pl-5 rounded-md my-1  text-white border-2"
+          onChange={(e) => setItemValue(e.target.value)}
+          className="h-9 w-52  flex items-center pl-5 rounded-md my-1  border-2"
           placeholder="Enter category ..."
         />
-        <button
-          className="h-9 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white"
-          onClick={submitItemValue}
-        >
+        <button className="h-9 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white">
           Save
         </button>
-      </div>
+      </form>
 
       {/* items and belong table  */}
-      <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
+      {/* <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
         <div>
           <h2>Category</h2>
           {categoryListArr.map((category) => {
             return (
               <h2
                 key={category.id}
-                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 "
+                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5 justify-between cursor-move "
               >
                 {category.category}
+                <div
+                  className="text-md rounded-full bg-red-500 text-white font-semi cursor-pointer"
+                  onClick={() => removeCategory(item.id)}
+                >
+                  <IoMdRemove />
+                </div>
               </h2>
             );
           })}
@@ -141,7 +147,7 @@ const Category = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

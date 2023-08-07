@@ -19,7 +19,6 @@ const formSlice = createSlice({
     },
   },
 });
-console.log(formSlice);
 
 export const { increment, decrement } = formSlice.actions;
 export default formSlice.reducer;
