@@ -5,12 +5,16 @@ import { useSelector } from "react-redux";
 import { IoMdRemove } from "react-icons/io";
 
 const Category = () => {
-  const { categoryList, itemsList } = useSelector((store) => store.form);
+  const { categoryList, itemsList, storeListData } = useSelector(
+    (store) => store.form
+  );
 
   const [itemsListArr, setItemsListArr] = useState(itemsList);
   const [categoryListArr, setCategoryListArr] = useState(categoryList);
   const [itemValue, setItemValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
+  const [storeList, setStoreList] = useState(storeListData);
+  const [storeListItemValue, setStoreListItemValue] = useState("");
 
   // save refernce for dragItem and dragOverItem
   const dragCategory = useRef(null);
@@ -36,16 +40,18 @@ const Category = () => {
     setCategoryListArr(newCategoryList);
   };
 
-  const addItemValue = (itemName) => {
-    let idArr = itemsListArr.map((e) => e.id);
-    let maxElemId = Math.max(...idArr);
-    let newObj = { id: maxElemId + 1, item: itemName };
-    const newItems = [...itemsListArr, newObj];
-    setItemsListArr(newItems);
+  const addStoreListItemValue = (itemName) => {
+    let newObj = {
+      id: new Date().getTime(),
+      item: itemName,
+      categoryList: categoryListArr,
+    };
+    const newItems = [...storeList, newObj];
+    setStoreList(newItems);
   };
-  const onItemBtnClick = () => {
-    addItemValue(itemValue);
-    setItemValue("");
+  const onStoreListItemBtn = () => {
+    addStoreListItemValue(storeListItemValue);
+    setStoreListItemValue("");
   };
 
   const addCategoryValue = (categoryName) => {
@@ -59,15 +65,15 @@ const Category = () => {
     setCategoryValue("");
   };
 
-  const removeItem = (id) => {
-    const updatedList = itemsListArr.filter((item) => item.id !== id);
-    setItemsListArr(updatedList);
-  };
   const removeCategory = (id) => {
     const updatedList = categoryListArr.filter(
       (category) => category.id !== id
     );
     setCategoryListArr(updatedList);
+  };
+  const removeStoreListItem = (id) => {
+    const updatedList = storeList.filter((list) => list.id !== id);
+    setStoreList(updatedList);
   };
 
   return (
@@ -123,64 +129,65 @@ const Category = () => {
       </div>
 
       {/* items and belong table  */}
-      <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
-        <div>
+      <div className=" border-2 rounded-md mt-3  px-10 py-2">
+        <div className="grid grid-cols-3 ">
           <h2>Items</h2>
-          {itemsListArr.map((item) => {
+          <h2>Belongs to</h2>
+          <h2></h2>
+        </div>
+        <div>
+          {storeList.map((list) => {
+            const { id, categoryList, item } = list;
             return (
-              <h2
-                key={item.id}
-                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5 justify-between  "
-              >
-                {item.item}
-                <div
-                  className="text-md rounded-full bg-red-500 text-white font-semi cursor-pointer"
-                  onClick={() => removeItem(item.id)}
-                >
-                  <IoMdRemove />
+              <>
+                <div className="grid grid-cols-3" key={id}>
+                  <h2 className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5   ">
+                    {item}
+                  </h2>
+                  <div>
+                    <select
+                      key={item.id}
+                      name="itemSelect"
+                      value="value"
+                      id="itemSelect"
+                      onChange={() => console.log("handlechange occured")}
+                      className="h-9 w-52  flex items-center pl-5 my-1 outline-none border-2 rounded-md"
+                    >
+                      {categoryList.map((category) => {
+                        return (
+                          <option key={category.id} value={category.category}>
+                            {category.category}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <div
+                    className="text-md h-9 bg-red-500 text-white font-semi cursor-pointer  flex items-center  rounded-md w-fit px-2"
+                    onClick={() => removeStoreListItem(id)}
+                  >
+                    remove
+                  </div>
                 </div>
-              </h2>
+              </>
             );
           })}
           <input
             type="text"
             id="item"
             name="item"
-            value={itemValue}
-            onChange={(e) => setItemValue(e.target.value)}
+            value={storeListItemValue}
+            onChange={(e) => setStoreListItemValue(e.target.value)}
             className="h-9 w-52 flex items-center pl-4 rounded-md my-2 border-2"
             placeholder="Enter item ..."
           />
           <button
             className="h-9 w-52 bg-green-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white"
             type="button"
-            onClick={onItemBtnClick}
+            onClick={onStoreListItemBtn}
           >
             + Create More
           </button>
-        </div>
-        <div>
-          <h2>Belongs to</h2>
-          {/* {itemsListArr.map((item) => {
-            return (
-              <select
-                key={item.id}
-                name="itemSelect"
-                value="value"
-                id="itemSelect"
-                onChange={() => console.log("handlechange occured")}
-                className="h-9 w-52  flex items-center pl-5 my-1 outline-none border-2 rounded-md"
-              >
-                {itemsListArr.map((itemValue) => {
-                  return (
-                    <option key={itemValue.id} value={itemValue.item}>
-                      {itemValue.item}
-                    </option>
-                  );
-                })}
-              </select>
-            );
-          })} */}
         </div>
       </div>
     </div>

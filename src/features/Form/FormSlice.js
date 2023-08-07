@@ -5,6 +5,13 @@ const initialState = {
   questionsList: questionsList,
   categoryList: categoryList,
   itemsList: itemsList,
+  storeListData: [
+    {
+      id: new Date().getTime(),
+      item: "ans 1",
+      categoryList,
+    },
+  ],
 };
 
 const formSlice = createSlice({

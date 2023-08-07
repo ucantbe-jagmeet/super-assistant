@@ -18,11 +18,11 @@ const categoryList = [
 ];
 const itemsList = [{ id: 0, item: "ans 1" }];
 
-// const storeList = [
-//   {
-//     id: 1,
-//     itemsList: 'ans 1',
-//     itemsList = [{}]
-//   }
-// ]
-export { questionsList, itemsList, categoryList };
+const storeListData = [
+  {
+    id: 1,
+    itemsList: "ans 1",
+    categoryList: [{ id: 0, category: "item 1" }],
+  },
+];
+export { questionsList, itemsList, categoryList, storeListData };
