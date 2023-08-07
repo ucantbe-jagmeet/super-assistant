@@ -10,6 +10,7 @@ const Category = () => {
   const [itemsListArr, setItemsListArr] = useState(itemsList);
   const [categoryListArr, setCategoryListArr] = useState(categoryList);
   const [itemValue, setItemValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState("");
 
   // save refernce for dragItem and dragOverItem
   const dragItem = useRef(null);
@@ -36,19 +37,33 @@ const Category = () => {
     let maxElemId = Math.max(...idArr);
     let newObj = { id: maxElemId + 1, item: itemName };
     const newItems = [...itemsListArr, newObj];
-    console.log(newItems);
     setItemsListArr(newItems);
   };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onItemBtnClick = () => {
     addItemValue(itemValue);
     setItemValue("");
+  };
+
+  const addCategoryValue = (categoryName) => {
+    let newObj = { id: new Date().getTime(), category: categoryName };
+    const newCategories = [...categoryListArr, newObj];
+    setCategoryListArr(newCategories);
+  };
+
+  const onCategoryBtnClick = () => {
+    addCategoryValue(categoryValue);
+    setCategoryValue("");
   };
 
   const removeItem = (id) => {
     const updatedList = itemsListArr.filter((item) => item.id !== id);
     setItemsListArr(updatedList);
+  };
+  const removeCategory = (id) => {
+    const updatedList = categoryListArr.filter(
+      (category) => category.id !== id
+    );
+    setCategoryListArr(updatedList);
   };
 
   return (
@@ -56,7 +71,7 @@ const Category = () => {
       <h1 className="text-2xl font-semibold text-gray-600">Question 1</h1>
 
       <h2 className="text-gray-500 mt-5"> Items</h2>
-      <form className="flex justify-center flex-col" onSubmit={onSubmit}>
+      <div className="flex justify-center flex-col">
         {itemsListArr.map((item) => {
           return (
             <div
@@ -86,27 +101,31 @@ const Category = () => {
           value={itemValue}
           onChange={(e) => setItemValue(e.target.value)}
           className="h-9 w-52  flex items-center pl-5 rounded-md my-1  border-2"
-          placeholder="Enter category ..."
+          placeholder="Enter items ..."
         />
-        <button className="h-9 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white">
+        <button
+          className="h-9 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white"
+          onClick={onItemBtnClick}
+          type="button"
+        >
           Save
         </button>
-      </form>
+      </div>
 
       {/* items and belong table  */}
-      {/* <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
+      <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
         <div>
           <h2>Category</h2>
           {categoryListArr.map((category) => {
             return (
               <h2
                 key={category.id}
-                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5 justify-between cursor-move "
+                className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5 justify-between  "
               >
                 {category.category}
                 <div
                   className="text-md rounded-full bg-red-500 text-white font-semi cursor-pointer"
-                  onClick={() => removeCategory(item.id)}
+                  onClick={() => removeCategory(category.id)}
                 >
                   <IoMdRemove />
                 </div>
@@ -115,18 +134,24 @@ const Category = () => {
           })}
           <input
             type="text"
-            id="item"
-            className="h-9 w-52  flex items-center pl-4 rounded-md my-2  text-white border-2"
-            placeholder="Enter Item ..."
-            required
+            id="category"
+            name="category"
+            value={categoryValue}
+            onChange={(e) => setCategoryValue(e.target.value)}
+            className="h-9 w-52 flex items-center pl-4 rounded-md my-2 border-2"
+            placeholder="Enter Category ..."
           />
-          <button className="h-9 w-52 bg-green-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white">
+          <button
+            className="h-9 w-52 bg-green-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white"
+            type="button"
+            onClick={onCategoryBtnClick}
+          >
             + Create More
           </button>
         </div>
         <div>
           <h2>Belongs to</h2>
-          {itemsListArr.map((item) => {
+          {/* {itemsListArr.map((item) => {
             return (
               <select
                 key={item.id}
@@ -145,9 +170,9 @@ const Category = () => {
                 })}
               </select>
             );
-          })}
+          })} */}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
