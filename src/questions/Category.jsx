@@ -5,13 +5,9 @@ import { useSelector } from "react-redux";
 import { IoMdRemove } from "react-icons/io";
 
 const Category = () => {
-  const { categoryList, itemsList, storeListData } = useSelector(
-    (store) => store.form
-  );
+  const { categoryList, storeListData } = useSelector((store) => store.form);
 
-  const [itemsListArr, setItemsListArr] = useState(itemsList);
   const [categoryListArr, setCategoryListArr] = useState(categoryList);
-  const [itemValue, setItemValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
   const [storeList, setStoreList] = useState(storeListData);
   const [storeListItemValue, setStoreListItemValue] = useState("");
@@ -88,10 +84,10 @@ const Category = () => {
         </span>
       </h2>
       <div className="flex justify-center flex-col">
-        {categoryListArr.map((category) => {
+        {categoryListArr.map((category, index) => {
           return (
             <div
-              key={category.id}
+              key={index}
               draggable
               onDragStart={(e) => (dragCategory.current = category.id)}
               onDragEnter={(e) => (dragOverCategory.current = category.id)}
@@ -124,7 +120,7 @@ const Category = () => {
           onClick={onCategoryBtnClick}
           type="button"
         >
-          Save
+          + Add Category
         </button>
       </div>
 
@@ -136,11 +132,11 @@ const Category = () => {
           <h2></h2>
         </div>
         <div>
-          {storeList.map((list) => {
+          {storeList.map((list, index) => {
             const { id, categoryList, item } = list;
             return (
               <>
-                <div className="grid grid-cols-3" key={id}>
+                <div className="grid grid-cols-3" key={index}>
                   <h2 className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5   ">
                     {item}
                   </h2>
@@ -153,9 +149,9 @@ const Category = () => {
                       onChange={() => console.log("handlechange occured")}
                       className="h-9 w-52  flex items-center pl-5 my-1 outline-none border-2 rounded-md"
                     >
-                      {categoryList.map((category) => {
+                      {categoryList.map((category, index) => {
                         return (
-                          <option key={category.id} value={category.category}>
+                          <option key={index} value={category.category}>
                             {category.category}
                           </option>
                         );
@@ -186,7 +182,7 @@ const Category = () => {
             type="button"
             onClick={onStoreListItemBtn}
           >
-            + Create More
+            + Create item
           </button>
         </div>
       </div>

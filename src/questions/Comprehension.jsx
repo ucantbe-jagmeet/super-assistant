@@ -10,7 +10,6 @@ const Comprehension = () => {
       correctAnswer: null,
     },
   ]);
-
   const handleQuestionChange = (e, index) => {
     const { name, value } = e.target;
     setQuestions((prevQuestions) => {

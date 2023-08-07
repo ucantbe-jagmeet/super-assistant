@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { categoryList, itemsList, questionsList } from "../../../data";
+import { categoryList, questionsList } from "../../../data";
 
 const initialState = {
   questionsList: questionsList,
   categoryList: categoryList,
-  itemsList: itemsList,
   storeListData: [
     {
       id: new Date().getTime(),
       item: "ans 1",
+      categoryList,
+    },
+    {
+      id: new Date().getTime(),
+      item: "ans 2",
       categoryList,
     },
   ],

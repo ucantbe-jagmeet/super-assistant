@@ -55,7 +55,13 @@ const FillBlanks = () => {
     <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grey-400 mt-10 ">
       <h1 className="text-2xl font-semibold text-gray-600">Question 2</h1>
 
-      <h2 className="text-gray-500 mt-5">Fill in the Blank</h2>
+      <h2 className="text-gray-500 mt-5">
+        Fill in the Blank
+        <span className="text-green-500 text-xs">
+          {" "}
+          (*use ctrl + u key to underline text)
+        </span>
+      </h2>
 
       <div className="flex justify-center flex-col">
         <div className="h-20 w-96  flex items-center pl-5 rounded-md my-1   border-2 outline-none">

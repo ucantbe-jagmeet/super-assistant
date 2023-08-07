@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { useState, useRef } from "react";
+import { useSelector } from "react-redux";
 
 const CategorySol = () => {
-  const [itemsList, setItemsList] = useState([
-    ["item 1"],
-    ["item 2"],
-    ["item 3"],
-  ]);
+  const { storeListData, categoryList } = useSelector((store) => store.form);
+
+  const itemListData = storeListData.map((item) => ({
+    id: item.id,
+    item: item.itemsList,
+  }));
+
+  const [itemsList, setItemsList] = useState(itemListData);
   const [ansList, setAnsList] = useState(["ans 1", "ans 2", "ans 3"]);
 
   // save reference for dragItem and dragOverItem
@@ -45,7 +49,7 @@ const CategorySol = () => {
 
       <h2 className="text-gray-500 mt-5"> Categories</h2>
       <div className="flex justify-evenly">
-        {ansList.map((item, index) => {
+        {itemsList.map((item, index) => {
           return (
             <h2
               key={index}
@@ -53,28 +57,24 @@ const CategorySol = () => {
               draggable
               onDragStart={(e) => handleDragStart(e, index)}
             >
-              {item}
+              {item.item}
             </h2>
           );
         })}
       </div>
       <div className="flex justify-evenly mt-3">
-        {itemsList.map((item, index) => {
+        {categoryList.map((category, index) => {
           return (
             <div
               key={index}
               className=" bg-yellow-50 border-2 w-52 capitalize  rounded-md"
               style={{
-                height: `${itemsList.length * 2.25}rem`,
+                height: `${categoryList.length * 2.25}rem`,
               }}
               onDrop={(e) => handleDrop(e, index)}
               onDragOver={(e) => e.preventDefault()}
             >
-              {item.map((ans, ansIndex) => (
-                <h1 key={ansIndex} className="text-center">
-                  {ans}
-                </h1>
-              ))}
+              <h1 className="text-center">{category.category}</h1>
             </div>
           );
         })}
