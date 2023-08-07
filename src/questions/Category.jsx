@@ -13,23 +13,27 @@ const Category = () => {
   const [categoryValue, setCategoryValue] = useState("");
 
   // save refernce for dragItem and dragOverItem
-  const dragItem = useRef(null);
-  const dragOverItem = useRef(null);
+  const dragCategory = useRef(null);
+  const dragOverCategory = useRef(null);
   // const handle drag sort
   const handleSort = () => {
-    //duplicate items
-    let newItemsList = [...itemsListArr];
+    //duplicate categoryies
+    let newCategoryList = [...categoryListArr];
+
     // remove and save the dragged item content
-    const draggedItemContent = newItemsList.splice(dragItem.current, 1)[0];
+    const draggedCategoryContent = newCategoryList.splice(
+      dragCategory.current,
+      1
+    )[0];
     //switch the position
-    newItemsList.splice(dragOverItem.current, 0, draggedItemContent);
+    newCategoryList.splice(dragOverCategory.current, 0, draggedCategoryContent);
 
     // reset the position ref
-    dragItem.current = null;
-    dragOverItem.current = null;
+    dragCategory.current = null;
+    dragOverCategory.current = null;
 
     // update the actual array
-    setItemsListArr(newItemsList);
+    setCategoryListArr(newCategoryList);
   };
 
   const addItemValue = (itemName) => {
@@ -70,23 +74,29 @@ const Category = () => {
     <div className="w-full h-auto bg-white rounded-md px-10 py-5 border-2 border-grey-400  ">
       <h1 className="text-2xl font-semibold text-gray-600">Question 1</h1>
 
-      <h2 className="text-gray-500 mt-5"> Items</h2>
+      <h2 className="text-gray-500 mt-5">
+        Categories
+        <span className="text-xs text-red-500">
+          {" "}
+          (*drag Categories to rearrange order)
+        </span>
+      </h2>
       <div className="flex justify-center flex-col">
-        {itemsListArr.map((item) => {
+        {categoryListArr.map((category) => {
           return (
             <div
-              key={item.id}
+              key={category.id}
               draggable
-              onDragStart={(e) => (dragItem.current = item.id)}
-              onDragEnter={(e) => (dragOverItem.current = item.id)}
+              onDragStart={(e) => (dragCategory.current = category.id)}
+              onDragEnter={(e) => (dragOverCategory.current = category.id)}
               onDragEnd={handleSort}
               onDragOver={(e) => e.preventDefault()}
             >
               <h2 className="h-9 w-52 bg-red-100 flex items-center px-5 rounded-sm my-1 justify-between cursor-move">
-                {item.item}
+                {category.category}
                 <div
                   className="text-md rounded-full bg-red-500 text-white cursor-pointer"
-                  onClick={() => removeItem(item.id)}
+                  onClick={() => removeCategory(category.id)}
                 >
                   <IoMdRemove />
                 </div>
@@ -96,16 +106,16 @@ const Category = () => {
         })}
         <input
           type="text"
-          id="item"
-          name="item"
-          value={itemValue}
-          onChange={(e) => setItemValue(e.target.value)}
+          id="category"
+          name="category"
+          value={categoryValue}
+          onChange={(e) => setCategoryValue(e.target.value)}
           className="h-9 w-52  flex items-center pl-5 rounded-md my-1  border-2"
-          placeholder="Enter items ..."
+          placeholder="Enter Category ..."
         />
         <button
           className="h-9 w-52 bg-blue-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white"
-          onClick={onItemBtnClick}
+          onClick={onCategoryBtnClick}
           type="button"
         >
           Save
@@ -115,17 +125,17 @@ const Category = () => {
       {/* items and belong table  */}
       <div className=" border-2 rounded-md mt-3 grid grid-cols-2 px-10 py-2">
         <div>
-          <h2>Category</h2>
-          {categoryListArr.map((category) => {
+          <h2>Items</h2>
+          {itemsListArr.map((item) => {
             return (
               <h2
-                key={category.id}
+                key={item.id}
                 className="h-9 w-52 bg-red-100 flex items-center pl-5 rounded-sm my-1 px-5 justify-between  "
               >
-                {category.category}
+                {item.item}
                 <div
                   className="text-md rounded-full bg-red-500 text-white font-semi cursor-pointer"
-                  onClick={() => removeCategory(category.id)}
+                  onClick={() => removeItem(item.id)}
                 >
                   <IoMdRemove />
                 </div>
@@ -134,17 +144,17 @@ const Category = () => {
           })}
           <input
             type="text"
-            id="category"
-            name="category"
-            value={categoryValue}
-            onChange={(e) => setCategoryValue(e.target.value)}
+            id="item"
+            name="item"
+            value={itemValue}
+            onChange={(e) => setItemValue(e.target.value)}
             className="h-9 w-52 flex items-center pl-4 rounded-md my-2 border-2"
-            placeholder="Enter Category ..."
+            placeholder="Enter item ..."
           />
           <button
             className="h-9 w-52 bg-green-400 flex items-center pl-5 rounded-md my-2 font-semibold text-white"
             type="button"
-            onClick={onCategoryBtnClick}
+            onClick={onItemBtnClick}
           >
             + Create More
           </button>

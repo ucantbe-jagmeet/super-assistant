@@ -11,15 +11,18 @@ const questionsList = [
   },
 ];
 
-const itemsList = [
-  { id: 0, item: "item 1" },
-  { id: 1, item: "item 2" },
-  { id: 2, item: "item 3" },
-];
 const categoryList = [
-  { id: 0, category: "ans 1" },
-  { id: 1, category: "ans 2" },
-  { id: 2, category: "ans 3" },
+  { id: 0, category: "item 1" },
+  { id: 1, category: "item 2" },
+  { id: 2, category: "item 3" },
 ];
+const itemsList = [{ id: 0, item: "ans 1" }];
 
+// const storeList = [
+//   {
+//     id: 1,
+//     itemsList: 'ans 1',
+//     itemsList = [{}]
+//   }
+// ]
 export { questionsList, itemsList, categoryList };
